@@ -5,7 +5,7 @@ import { PresupuestosPage } from './presupuestos.page';
 
 const routes: Routes = [
   {
-    path: 'presupuestos',
+    path: '',
     component: PresupuestosPage
   }
 ];
