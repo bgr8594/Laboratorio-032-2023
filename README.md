@@ -1,3 +1,6 @@
 # 032 E2023 Laboratorio de Aplicaciones Móviles
-### 2086210 - Ismael Sandoval Aguilar
-### Repositorio de prácticas y proyectos.
+
+Repositorio de prácticas y proyectos.
+
+- Nombre: Ismael Sandoval Aguilar.
+- Matrícula: 2086210.
