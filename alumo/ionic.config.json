@@ -1,0 +1,7 @@
+{
+  "name": "alumo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
