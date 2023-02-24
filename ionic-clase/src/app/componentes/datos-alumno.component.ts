@@ -1,0 +1,16 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-datos-alumno',
+  templateUrl: './datos-alumno.component.html',
+  styleUrls: ['./datos-alumno.component.scss'],
+})
+export class DatosAlumnoComponent implements OnInit {
+  @Input() alumnosList:Alumno[] =[];
+  @Output() eliminar: any = new EventEmitter<Alumno[]>();
+  @Output() editar:  any = new EventEmitter<number>();
+  constructor() { }
+
+  ngOnInit() {}
+
+}
