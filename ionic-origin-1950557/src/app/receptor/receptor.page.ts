@@ -4,8 +4,8 @@ import { EnvioReceptorService } from '../envio-receptor.service';
 
 @Component({
   selector: 'app-receptor',
-  templateUrl: '../receptor.page.html',
-  styleUrls: ['../receptor.page.scss'],
+  templateUrl: './receptor.page.html',
+  styleUrls: ['./receptor.page.scss'],
 })
 export class ReceptorPage implements OnInit {
 
