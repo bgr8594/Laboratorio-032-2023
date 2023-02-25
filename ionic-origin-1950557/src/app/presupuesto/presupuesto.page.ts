@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Gasto } from '../interface/gasto';
-import { GastoService } from '../service/gasto.service'
+import { Gasto } from '../gasto';
+import { GastoService } from '../gasto.service'
 
 @Component({
   selector: 'app-presupuesto',
