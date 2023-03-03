@@ -28,12 +28,20 @@ const routes: Routes = [
     loadChildren: () => import('./receptor/receptor.module').then( m => m.ReceptorPageModule)
   },
   {
-    path: 'inicio',
-    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+    path: 'receta',
+    loadChildren: () => import('./receta/receta.module').then( m => m.RecetaPageModule)
   },
   {
-    path: 'receptor',
-    loadChildren: () => import('./receptor/receptor.module').then( m => m.ReceptorPageModule)
+    path: 'detalle-receta',
+    loadChildren: () => import('./detalle-receta/detalle-receta.module').then( m => m.DetalleRecetaPageModule)
+  },
+  {
+    path: 'detalle-receta',
+    loadChildren: () => import('./detalle-receta/detalle-receta.module').then( m => m.DetalleRecetaPageModule)
+  },
+  {
+    path: 'receta',
+    loadChildren: () => import('./receta/receta.module').then( m => m.RecetaPageModule)
   },
 
 ];
