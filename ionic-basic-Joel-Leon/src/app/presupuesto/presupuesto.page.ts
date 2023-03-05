@@ -8,7 +8,7 @@ import { GastoService } from '../service/gasto.service'
   styleUrls: ['./presupuesto.page.scss'],
 })
 export class PresupuestoPage implements OnInit {
-
+  
   public gastos: string[]=['Directos','Fijos', 'Variables'];
   public selectedValue: any;
   public monto: number=0;
@@ -32,7 +32,7 @@ export class PresupuestoPage implements OnInit {
   cambioValor(value: any){
     console.log(value);
   }
-
+ 
   guardar(){
     this.resultados ="";
     if(this.monto!=null && this.selectedValue!=null && this.descripcion!= null && this.monto > 0
