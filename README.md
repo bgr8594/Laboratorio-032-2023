@@ -4,3 +4,5 @@ Repositorio de prácticas y proyectos.
 
 - Nombre: Ismael Sandoval Aguilar.
 - Matrícula: 2086210.
+
+Nota: en esta rama se encuentran los PDFs con los enlaces a cada práctica. 
