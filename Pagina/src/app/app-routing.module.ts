@@ -12,8 +12,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'alumno',
-    loadChildren: () => import('./alumno/alumno.module').then( m => m.AlumnoPageModule)
+    path: 'alumnos',
+    loadChildren: () => import('./alumnos/alumnos.module').then( m => m.AlumnosPageModule)
   },
 ];
 
