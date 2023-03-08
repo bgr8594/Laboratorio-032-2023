@@ -1,0 +1,7 @@
+{
+  "name": "Pagina",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
