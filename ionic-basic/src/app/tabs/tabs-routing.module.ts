@@ -19,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'presupuestos',
-        loadChildren: () => import('../presupuestos/presupuestos.module').then(m=>m.PresupuestosPageModule)
+        loadChildren: () => import('../presupuesto/presupuestos.module').then(m=>m.PresupuestosPageModule)
       },
       {
         path:'',
