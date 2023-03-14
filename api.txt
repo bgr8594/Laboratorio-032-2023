@@ -1,0 +1,8 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyBnLaSWgCCbayq1sPle7WuH3sZe3O-BTWI",
+  authDomain: "laboratorio-032-26f26.firebaseapp.com",
+  projectId: "laboratorio-032-26f26",
+  storageBucket: "laboratorio-032-26f26.appspot.com",
+  messagingSenderId: "1038883573750",
+  appId: "1:1038883573750:web:701de245c5960d40f041d7"
+};
