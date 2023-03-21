@@ -1,17 +1,42 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-import { HttpClientModule } from '@angular/common/http';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { TabsPage } from './tabs.page';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+const routes: Routes = [
+  {
+    path: '',
+    component: TabsPage,
+    children: [
+      {
+        path: 'alumnos',
+        loadChildren: () => import('../alumnos/alumnos.module').then(m => m.AlumnosPageModule)
+      }
+      ,
+      {
+        path: 'recetas',
+        loadChildren: () => import('../receta/receta.module').then(m => m.RecetaPageModule)
+      },
+      {
+        path: 'presupuesto',
+        loadChildren: () => import('../presupuesto/presupuesto.module').then(m => m.PresupuestoPageModule)
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/alumnos',
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: '',
+    redirectTo: '/tabs/alumnos',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [HttpClientModule,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class AppModule {}
+export class TabsPageRoutingModule { }
