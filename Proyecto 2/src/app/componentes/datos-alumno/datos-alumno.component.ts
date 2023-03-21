@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Alumno } from '../interface/alumno';
+import { Alumno } from 'src/app/alumno';
 
 @Component({
   selector: 'app-datos-alumno',
+  
   templateUrl: './datos-alumno.component.html',
   styleUrls: ['./datos-alumno.component.scss'],
 })
