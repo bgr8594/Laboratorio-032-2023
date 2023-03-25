@@ -5,7 +5,6 @@ import { AutService } from '../aut.service';
 import { MenuServiceService } from '../menu-service.service';
 import { Subscription } from 'rxjs';
 import { onAuthStateChanged } from 'firebase/auth';
-import { IonMenu } from '@ionic/angular';
 @Component({
   selector: 'app-float-menu',
   templateUrl: './float-menu.component.html',
@@ -57,15 +56,15 @@ export class FloatMenuComponent implements OnInit, OnDestroy {
       if(user!=null && user != undefined){
         this.datosMenu =[
           {nombre: 'Alumnos',enlace:'/alumnos',
-    icono:'school-outline'},
-      {nombre: 'Receteas',enlace:'/receta',
+      icono:'school-outline'},
+      {nombre: 'Recetas',enlace:'/receta',
       icono:'restaurant-outline'},
       {nombre: 'inicio',enlace:'/inicio',
       icono:'navigate-outline'},
       {nombre: 'Tabs',enlace:'/tabs',
       icono:'folder-outline'},
-      {nombre: 'Presupuesto',enlace:'/presupuesto',
-    icono:'cash-outline'},
+      {nombre: 'Presupuesto',enlace:'/presupuestos',
+       icono:'cash-outline'},
           {nombre: 'logout',enlace:'/home',
           icono:'log-out-outline'}
         ];

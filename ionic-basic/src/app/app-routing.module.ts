@@ -13,7 +13,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'presupuesto',
+    path: 'presupuestos',
     loadChildren: () => import('./presupuesto/presupuestos.module').then( m => m.PresupuestosPageModule),
     canActivate: [AutGuardGuard]
   },
