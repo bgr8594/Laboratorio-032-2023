@@ -5,6 +5,8 @@ import { ModalController } from '@ionic/angular';
 import { AutService } from '../service/aut.service';
 import { Router } from '@angular/router';
 import { MenuServiceService } from '../service/menu-service.service';
+import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -15,15 +17,18 @@ export class LoginPage implements OnInit {
 
 
   user: User = new User();
+  ionicForm: any;
 
   constructor(
     private router: Router,
     private modalCtrl: ModalController,
     private autSvc: AutService,
-    private menuService: MenuServiceService
+    private menuService: MenuServiceService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.buildForm();
   }
 
   async onLogin(){
@@ -49,7 +54,7 @@ export class LoginPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: ModlaErrorComponent,
       componentProps:{
-        error: 'Ingres password y/o contraseña'
+        error: 'Ingrese password y/o contraseña'
       }
     });
     return await modal.present();
@@ -59,4 +64,36 @@ export class LoginPage implements OnInit {
     this.menuService.setTitle("register")
     this.router.navigate(['/register']);
   }
+
+  buildForm(){
+    this.ionicForm = this.formBuilder.group({
+      email: new FormControl('',{validators: [Validators.email,Validators.required]}),
+      password: new FormControl('', {validators: [Validators.required, Validators.minLength(6), Validators.maxLength(6)]})
+    });
+  }  
+
+  hasError: any = (controlName: string, errorName: string) => {
+    return !this.ionicForm.controls[controlName].valid &&
+      this.ionicForm.controls[controlName].hasError(errorName) &&
+      this.ionicForm.controls[controlName].touched;
+  }   
+
+  submitForm(){
+    if(this.ionicForm.valid){
+      this.user.email = this.ionicForm.get('email').value;
+      this.user.password = this.ionicForm.get('password').value;
+      this.onLogin();
+    }
+  }
+
+  notZero(control: AbstractControl) {
+    if (control.value && control.value <= 0) {
+      return { 'notZero': true };
+    }
+    return null;
+  } 
+
+  ionViewWillEnter(){
+    this.ionicForm.reset();
+  }   
 }
