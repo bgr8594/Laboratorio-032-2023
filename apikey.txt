@@ -1,0 +1,19 @@
+const firebaseConfig = {
+
+  apiKey: "AIzaSyDaTItWwbbMLFVxhPLaPNmIToIj9U6wLLY",
+
+  authDomain: "lab-api-mov.firebaseapp.com",
+
+  databaseURL: "https://lab-api-mov-default-rtdb.firebaseio.com",
+
+  projectId: "lab-api-mov",
+
+  storageBucket: "lab-api-mov.appspot.com",
+
+  messagingSenderId: "700213877404",
+
+  appId: "1:700213877404:web:859f6806d53aaf8acb2b59",
+
+  measurementId: "G-X6RQ6PJ1D4"
+
+};

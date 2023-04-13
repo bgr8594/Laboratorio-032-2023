@@ -4,11 +4,10 @@ import { Gasto } from '../interface/gasto';
 @Injectable({
   providedIn: 'root'
 })
-
 // Servicio de gastos para operaciones alta, baja, cambios
 export class GastoService {
 
-  gastos: Gasto[] = [];
+  gastos: Gasto[]=[];
 
   constructor() { }
 
@@ -23,7 +22,7 @@ export class GastoService {
 
   borrarGasto(gasto: Gasto){
     this.gastos = 
-    this.gastos.filter((gasto) => gasto.id != (gasto.id != null?gasto.id:0));
+    this.gastos.filter((g)=>g.id!= (gasto.id!=null?gasto.id:0));
   }
 
   getGastos(){
