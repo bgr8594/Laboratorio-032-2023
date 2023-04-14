@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { Router } from '@angular/router';
+import { AutService } from 'src/app/aut.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,24 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  isLoged : any = false;
+  constructor(
+    private authService: AutService,
+    private router: Router
+  ) {
+    onAuthStateChanged(this.authService.getStateAuth(), user=>{
+        if(user!=null && user != undefined){
+          this.isLoged = true;
+        }
+      });
+    }
+
+    onLogout(){
+      signOut(this.authService.getStateAuth()).then(response=>{
+        console.log("Logout!");
+        this.router.navigateByUrl('/login');
+      }).catch(error=>{
+      });
+    }
 
 }
