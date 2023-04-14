@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Alumno } from '../interface/alumno'
+import { Alumno } from '../interface/alumno';
 import { AlumnoService } from '../service/alumno.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { AlumnoService } from '../service/alumno.service';
   styleUrls: ['./alumnos.page.scss'],
 })
 export class AlumnosPage implements OnInit {
-  
+
   alumnos:Alumno[]=[];
   nombre: string ='';
   matricula: string = '';
@@ -16,17 +16,16 @@ export class AlumnosPage implements OnInit {
   idActualizar: any|number = 0;
   error: boolean = false;
 
-
   constructor(private alumnoService: AlumnoService) { }
 
   ngOnInit() {
     this.alumnoService.setAlumnos([
-      {id:1, nombre: 'Ismael Sandoval Aguilar',
-      matricula: '2086210'},
-      {id:2, nombre: 'Alejandro Isaí Avila Avila',
-      matricula: '1943548'},
-      {id:3, nombre: 'Jesús Eduardo Brambila Duarte',
-      matricula: '2086128'}
+      {id:1, nombre: 'Gerardo Martinez',
+      matricula: '745589'},
+      {id:2, nombre: 'Isela Rodriguez',
+      matricula: '855449'},
+      {id:3, nombre: 'Estenban',
+      matricula: '0021554'}
     ]);
 
     this.alumnos = this.alumnoService.getAlumos();
@@ -72,5 +71,4 @@ export class AlumnosPage implements OnInit {
     this.nombre = alumno.nombre;
     this.idActualizar = alumno.id;
   }
-
 }

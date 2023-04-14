@@ -1,36 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Laboratorio de Aplicaciones Móviles
+      Blank
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <br>
-  <ion-button routerLink="/presupuesto">
-    Practica 1
-  </ion-button>
-  <ion-button routerLink="/alumnos">
-    Practica 2
-  </ion-button>
-  <ion-button routerLink="/receptor">
-    Practica 3
-  </ion-button>
-  <ion-button routerLink="/receta">
-    Practica 4
-  </ion-button>
-  <ion-button routerLink="/tabs">
-    Practica 5
-  </ion-button>
-
-  <div id="container">
-    <strong>¡Hola mundo!</strong>
-    <p>Creado por Ismael Sandoval Aguilar</p>
-  </div>
+  <ion-button size="large" (click)="onLogout()">Logout</ion-button>
+  <ion-button *ngIf="isLoged" size="large" routerLink="/admin">Admin</ion-button>
 </ion-content>
