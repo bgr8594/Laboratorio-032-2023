@@ -3,10 +3,9 @@ import { User } from '../user';
 import { ModlaErrorComponent } from '../modla-error/modla-error.component';
 import { ModalController } from '@ionic/angular';
 import { AutService } from '../aut.service';
-import { Router } from '@angular/router';
 import { MenuServiceService } from '../menu-service.service';
 import {FormGroup, FormBuilder, Validators, FormControl, AbstractControl} from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +34,7 @@ export class LoginPage implements OnInit {
     this.autSvc.onLogin(this.user).then((user:any)=>{
       if(user!=null && user.code ==undefined){
         console.log('Successfully logged in!');
-        this.router.navigate(['/presupuestos']);
+        this.router.navigate(['/main/presupuesto']);
       }
       else{
         if(user.code){
