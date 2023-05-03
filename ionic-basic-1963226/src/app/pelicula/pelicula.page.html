@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>pelicula</ion-title>
-  </ion-toolbar>
+</ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list>
-        <ion-item *ngFor="let pelicula of peliculas"[routerLink]="['/detalle-pelicula', pelicula.id]">
-          {{pelicula.nombre}}
-        </ion-item>
+      <ion-item *ngFor="let pelicula of peliculas" (click)="irDetallePelicula(pelicula.id)">
+        {{pelicula.nombre}}
+      </ion-item>
     </ion-list>
 </ion-content>
