@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Personaje } from '../personaje';
-import { EnvioReceptorService } from '../service/envio-receptor.service';
+import { Personaje } from '../interface/personaje';import { EnvioReceptorService } from '../service/envio-receptor.service';
 
 @Component({
   selector: 'app-inicio',
@@ -31,7 +30,7 @@ export class InicioPage implements OnInit {
     this.envioReceptor.sendObjectSource(this.user);
     this.envioReceptor.sendListSource(this.list);
 
-    this.router.navigate(['/receptor']);
+    this.router.navigate(['/main/receptor']);
   }
 
 }
