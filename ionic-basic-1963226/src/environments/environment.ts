@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: "apmovlab.appspot.com",
     messagingSenderId: "545728759",
     appId: "1:545728759:web:8a9617ef18d1ebabe1cbf2"
-  }
+  },
+  apiKeyMaps :'AIzaSyDlWCVIkc3lrFnOG777LmZ6AQoMgCb3GGc'
 };
 
 /*

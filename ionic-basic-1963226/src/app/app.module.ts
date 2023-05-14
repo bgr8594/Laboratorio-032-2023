@@ -7,9 +7,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FloatMenuComponent } from './float-menu/float-menu.component';
+import { IndexDirective } from './index.directive';
 
 @NgModule({
-  declarations: [AppComponent, FloatMenuComponent],
+  declarations: [AppComponent, FloatMenuComponent, IndexDirective],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [HttpClientModule,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
