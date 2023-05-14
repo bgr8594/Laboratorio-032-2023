@@ -16,8 +16,8 @@ const routes: Routes = [
         loadChildren: () => import('../inicio/inicio.module').then( m => m.InicioPageModule)
       },
       {
-        path: 'presupuesto',
-        loadChildren: () => import('../presupuesto/presupuesto.module').then( m => m.PresupuestoPageModule)
+        path: 'galeria',
+        loadChildren: ()=> import('../galeria/galeria.module').then(m=>m.GaleriaPageModule)
       },
       {
         path:'',
