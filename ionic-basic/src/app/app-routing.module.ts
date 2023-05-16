@@ -8,44 +8,48 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'main',
+    children: [
+      {
+        path: 'presupuesto',
+        loadChildren: () => import('./presupuesto/presupuesto.module').then( m => m.PresupuestoPageModule)
+      },
+      {
+        path: 'alumnos',
+        loadChildren: () => import('./alumnos/alumnos.module').then( m => m.AlumnosPageModule)
+      },
+      {
+        path: 'inicio',
+        loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+      },
+      {
+        path: 'receptor',
+        loadChildren: () => import('./receptor/receptor.module').then( m => m.ReceptorPageModule)
+      },
+      {
+        path: 'receta',
+        loadChildren: () => import('./receta/receta.module').then( m => m.RecetaPageModule)
+      },
+      {
+        path: 'detalle-receta',
+        loadChildren: () => import('./detalle-receta/detalle-receta.module').then( m => m.DetalleRecetaPageModule)
+      },
+      {
+        path: 'tabs',
+        loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+      },
+      {
+        path: 'destinos',
+        loadChildren: () => import('./destinos/destinos.module').then( m => m.DestinosPageModule)
+      }
+    ],
+    canActivate: [AuthGuardGuard]
+  }
+  ,
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: 'presupuesto',
-    loadChildren: () => import('./presupuesto/presupuesto.module').then( m => m.PresupuestoPageModule),
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'alumnos',
-    loadChildren: () => import('./alumnos/alumnos.module').then( m => m.AlumnosPageModule),
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'inicio',
-    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule),
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'receptor',
-    loadChildren: () => import('./receptor/receptor.module').then( m => m.ReceptorPageModule),
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'receta',
-    loadChildren: () => import('./receta/receta.module').then( m => m.RecetaPageModule),
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'detalle-receta',
-    loadChildren: () => import('./detalle-receta/detalle-receta.module').then( m => m.DetalleRecetaPageModule),
-    canActivate: [AuthGuardGuard]
-  },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
-    canActivate: [AuthGuardGuard]
   },
   {
     path: 'login',
@@ -54,12 +58,7 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
-    path: 'destinos',
-    loadChildren: () => import('./destinos/destinos.module').then( m => m.DestinosPageModule),
-    canActivate: [AuthGuardGuard]
-  },
+  }
 ];
 
 @NgModule({
