@@ -18,8 +18,8 @@ const routes: Routes = [
         loadChildren: () => import('../receta/receta.module').then(m=>m.RecetaPageModule)
       },
       {
-        path: 'presupuestos',
-        loadChildren: () => import('../presupuesto/presupuestos.module').then(m=>m.PresupuestosPageModule)
+        path: 'galeria',
+        loadChildren: () => import('../galeria/galeria.module').then(m=>m.GaleriaPageModule)
       },
       {
         path:'',
