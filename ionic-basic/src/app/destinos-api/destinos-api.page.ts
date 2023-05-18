@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Lugar } from '../interface/lugar';
-import { AutService } from '../service/aut.service';
+import { ApiService } from '../service/api.service';
 
 @Component({
-  selector: 'app-destinos',
-  templateUrl: './destinos.page.html',
-  styleUrls: ['./destinos.page.scss'],
+  selector: 'app-destinos-api',
+  templateUrl: './destinos-api.page.html',
+  styleUrls: ['./destinos-api.page.scss'],
 })
-
-export class DestinosPage implements OnInit {
+export class DestinosApiPage implements OnInit {
 
   lugar: Lugar = new Lugar();
   destinos: any[] = [];
@@ -20,52 +19,55 @@ export class DestinosPage implements OnInit {
   longitud: any;
 
   constructor(
-    private authService: AutService,
+    private lugarService: ApiService,
     private formBuilder: FormBuilder
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.buildForm();
-    this.authService.getLugares(this.destinos);
     this.getPosition();
   }
 
-  // cada que se vuelve a entrar a la pagina ó componente de pagina
-  //https://ionicframework.com/docs/angular/lifecycle
-
-  ionViewWillEnter() {
-    this.authService.getLugares(this.destinos);
-  }
-
-  altaLugar() {
-    this.authService.altaLugar(this.lugar);
-    this.authService.getLugares(this.destinos);
-    this.ionicForm.reset();
+  getLugares() {
+    this.lugarService.getLugaresApi().subscribe((response: Lugar[]) => {
+      this.destinos = response;
+    }, error => {
+      console.error(error);
+    });
   }
 
   submitForm() {
+
+    //this.lugar = (this.lugar == undefined ? new Lugar() : this.lugar); 
+
     if (this.ionicForm.valid) {
       this.lugar.nombre = this.ionicForm.get('nombre').value;
       this.lugar.latitud = this.latitud;
       this.lugar.longitud = this.longitud;
       if (!this.editando) {
-        this.authService.altaLugar(this.lugar).then((e: any) => {
-          this.ionicForm.reset();
-          this.authService.getLugares(this.destinos);
-        }).catch(e => {
-          console.error(e);
-        });
+        this.lugarService.altaLugarApi(this.lugar).subscribe((response: any) => {
+          if (response) {
+            this.ionicForm.reset();
+            this.getLugares();
+          } else {
+            this.errorProceso();
+          }
+        }, error => {
+          console.error(error);
+        })
       } else {
-        this.authService.updateLugares(this.lugar.id, this.lugar).then(e => {
-          this.editando = false;
-          this.estado = "Alta destino";
-          this.lugar = new Lugar();
-          this.ionicForm.reset();
-          this.authService.getLugares(this.destinos);
-        }).catch(e => {
-          console.error(e);
+        this.lugarService.editarLugarApi(this.lugar.id, this.lugar).subscribe((resposne: any) => {
+          if (resposne) {
+            this.editando = false;
+            this.estado = "Alta destino";
+            this.lugar = new Lugar();
+            this.ionicForm.reset();
+            this.getLugares();
+          } else {
+            this.errorProceso();
+          }
+        }, error => {
+          console.error(error);
         });
       }
     }
@@ -83,6 +85,7 @@ export class DestinosPage implements OnInit {
       this.ionicForm.controls[controlName].touched;
   }
 
+
   editarLugar(id: any, lugar: any) {
     this.editando = true;
     this.lugar = lugar;
@@ -91,12 +94,24 @@ export class DestinosPage implements OnInit {
   }
 
   eliminarLugar(id: any) {
-    this.estado = "Alta destino";
-    this.editando = false;
-    this.ionicForm.reset();
-    this.authService.deleteLugar(id).then(response => {
-      this.authService.getLugares(this.destinos);
-    }).catch(error => { });
+    this.lugarService.borrarLugarApi(id).subscribe((response: any) => {
+      if (response) {
+        this.getLugares();
+        this.estado = "Alta destino";
+        this.editando = false;
+        this.ionicForm.reset();
+      } else {
+        this.errorProceso();
+      }
+    }, error => {
+      console.error(error);
+    })
+  }
+
+  // cada que se vuelve a entrar a la pagina ó componente de pagina
+  //https://ionicframework.com/docs/angular/lifecycle
+  ionViewWillEnter() {
+    this.getLugares();
   }
 
   cancelarEdicion() {
@@ -120,5 +135,9 @@ export class DestinosPage implements OnInit {
           this.longitud = null;
         }, { timeout: 5000, enableHighAccuracy: true });
     });
+  }
+
+  errorProceso() {
+    alert("Ocurrio un error en el proceso");
   }
 }

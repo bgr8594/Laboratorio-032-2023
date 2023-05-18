@@ -3,6 +3,7 @@
     <ion-title>Destinos</ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content padding>
   <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
     <ion-item>
@@ -21,6 +22,7 @@
         (click)="cancelarEdicion()">Cancelar</ion-button>
     </ion-item-divider>
   </form>
+
   <ion-item-divider></ion-item-divider>
   <ion-grid>
     <ion-row>
