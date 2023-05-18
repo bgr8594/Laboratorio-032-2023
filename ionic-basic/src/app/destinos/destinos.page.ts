@@ -16,6 +16,10 @@ export class DestinosPage implements OnInit {
   estado: string ="Alta destino";
   editando: boolean= false;
 
+  latitud: any;
+  longitud: any;
+
+
   constructor(
     private authService: AutService,
     private formBuilder: FormBuilder
@@ -24,6 +28,7 @@ export class DestinosPage implements OnInit {
   ngOnInit() {
     this.buildForm();
     this.authService.getLugares(this.destinos);
+    this.getPosition();
   }
  // cada que se vuelve a entrar a la pagina ó componente de pagina
   //https://ionicframework.com/docs/angular/lifecycle
@@ -42,6 +47,8 @@ export class DestinosPage implements OnInit {
   submitForm(){
     if(this.ionicForm.valid){
       this.lugar.nombre = this.ionicForm.get('nombre').value;
+      this.lugar.latitud = this.latitud;
+      this.lugar.longitud = this.longitud;
       if(!this.editando){
         this.authService.altaLugar(this.lugar).then((e:any)=>{
           this.ionicForm.reset();
@@ -91,7 +98,24 @@ export class DestinosPage implements OnInit {
         this.authService.getLugares(this.destinos);     
       }).catch(error=>{});
   
-    }
+    } 
+
+    getPosition(): Promise<any> {
+      return new Promise((resolve: any, reject: any): any => {
+        navigator.geolocation.getCurrentPosition((resp: any) => {
+          this.latitud = resp.coords.latitude;
+          this.longitud = resp.coords.longitude;
+        },
+        (err: any) => {
+          if ( err.code === 1 ) {
+            alert('Favor de activar la geolocalización en tu navegador y recargar la pantalla.');
+          }
+          this.latitud = null;
+          this.longitud = null;
+        }, {timeout: 5000, enableHighAccuracy: true });
+      });
+    }  
+  
   
     cancelarEdicion(){
       this.estado = "Alta destino";
