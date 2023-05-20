@@ -1,19 +1,15 @@
 export class Lugar {
     nombre: string;
 
-    ubicacion?: any = {latitud:'', longitud:''};
+    id?: string; // id de firebase no corresponde a mi modelo
 
-    constructor(){
+    ubicacion?: any = { latitud: '', longitud: '' };
 
-        this.nombre='';
-
+    constructor() {
+        this.nombre = ''
     }
-
-    public setUbicacion(latitud: string, Longiutd: string){
-
-        this.ubicacion.latitud= latitud;
-
+    public setUbicacion(latitud: string, Longiutd: string) {
+        this.ubicacion.latitud = latitud;
         this.ubicacion.longitud = Longiutd;
-
     }
 }
