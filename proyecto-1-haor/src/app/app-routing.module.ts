@@ -45,7 +45,11 @@ const routes: Routes = [
       {
         path: 'destinos-api',
         loadChildren: () => import('./destinos-api/destinos-api.module').then( m => m.DestinosApiPageModule)
-      }
+      },
+      {
+        path: 'galeria',
+        loadChildren: () => import('./galeria/galeria.module').then( m => m.GaleriaPageModule)
+      }      
     ],
     canActivate: [AutGuardGuard]
   }
@@ -106,10 +110,15 @@ const routes: Routes = [
   {
     path: 'destinos',
     loadChildren: () => import('./destinos/destinos.module').then( m => m.DestinosPageModule)
-  },  {
+  },
+  {
     path: 'destinos-api',
     loadChildren: () => import('./destinos-api/destinos-api.module').then( m => m.DestinosApiPageModule)
+  },  {
+    path: 'galeria',
+    loadChildren: () => import('./galeria/galeria.module').then( m => m.GaleriaPageModule)
   },
+
 
 
 
