@@ -4,6 +4,10 @@ export class Lugar {
     id?: string; // id de firebase no corresponde a mi modelo
     
     ubicacion?: any = {latitud:'', longitud:''};
+    
+    latitud: number = 0;
+
+    longitud: number = 0;
 
     constructor(){
 
