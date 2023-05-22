@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { TabsPage } from './tabs.page';
-
 const routes: Routes = [
   {
     path: '',
@@ -23,18 +21,17 @@ const routes: Routes = [
       },
       {
         path:'',
-        redirectTo: '/tabs/alumnos',
+        redirectTo: '/main/tabs/alumnos',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/alumnos',
+    redirectTo: '/main/tabs/alumnos',
     pathMatch: 'full'
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
