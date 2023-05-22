@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Lugar } from '../interface/lugar';
 import { AutService } from '../service/aut.service';
+import { GooglemapsComponent } from '../componentes/googlemaps/googlemaps.component';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-destinos',
   templateUrl: './destinos.page.html',
@@ -18,20 +20,18 @@ export class DestinosPage implements OnInit {
 
   constructor(
     private authService: AutService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalController: ModalController
     ) { 
 
     }
-
   ngOnInit() {
     this.buildForm();
     this.authService.getLugares(this.destinos);
     this.getPosition();
   }
-
   // cada que se vuelve a entrar a la pagina ó componente de pagina
   //https://ionicframework.com/docs/angular/lifecycle
-
   ionViewWillEnter(){
     this.authService.getLugares(this.destinos);
   }
@@ -79,8 +79,11 @@ export class DestinosPage implements OnInit {
     this.editando = true;
     this.lugar = lugar;
     this.estado = "Editar el lugar";
+    this.latitud = lugar.latitud;
+    this.longitud = lugar.longitud;
     this.ionicForm.get('nombre').setValue(lugar.nombre);
   }
+
   eliminarLugar(id: any) {
     this.estado = "Alta destino";
     this.editando = false;
@@ -95,7 +98,6 @@ export class DestinosPage implements OnInit {
     this.ionicForm.reset();
     this.lugar = new Lugar();
   } 
-
   getPosition(): Promise<any> {
 		return new Promise((resolve: any, reject: any): any => {
 			navigator.geolocation.getCurrentPosition((resp: any) => {
@@ -111,4 +113,34 @@ export class DestinosPage implements OnInit {
 			}, {timeout: 5000, enableHighAccuracy: true });
 		});
 	}  
+
+  async addDirection(){
+    let positionInput: any = {
+      lat: -2.898116,
+      lng: -78.99958149999999
+    };
+    if(this.latitud !== null){
+      positionInput.lat = this.latitud;
+      positionInput.lng = this.longitud;
+    }
+
+
+    const modalAdd = await this.modalController.create({
+      component: GooglemapsComponent,
+      mode: 'ios',
+      componentProps: {position: positionInput} 
+    });
+
+    await modalAdd.present();
+
+    const {data} = await modalAdd.onWillDismiss();
+
+    if(data){
+      console.log('data->', data);
+      //this.cli
+      this.longitud = data.pos.lng;
+      this.latitud = data.pos.lat;
+      console.log('datos de ubiciacion actualizados, latitud: '+this.latitud+' \nlongitud:'+this.longitud);
+    }
+  }  
 }
