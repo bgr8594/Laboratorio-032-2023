@@ -35,7 +35,7 @@ export class RegisterPage implements OnInit {
       if(user){
         console.log('Successfully created user!');
         this.menuService.setTitle("presupuesto");
-        this.router.navigate(['/presupuesto']);
+        this.router.navigate(['/main/presupuesto']);
       }
     }).catch(error=>{
       if(error.code =='auth/email-already-in-use'){
