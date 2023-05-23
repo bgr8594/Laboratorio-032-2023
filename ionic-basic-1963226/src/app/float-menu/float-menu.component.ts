@@ -35,6 +35,7 @@ export class FloatMenuComponent implements OnInit, OnDestroy {
 
   ngOnInit() {}
 
+  
   navegar(link: string, titleMenu: string){
     this.titleMenu =titleMenu;
     this.router.navigate([link]);
@@ -58,6 +59,7 @@ export class FloatMenuComponent implements OnInit, OnDestroy {
           {nombre: 'Turismo', enlace: '/main/destinos', icono:'airplane'},
           {nombre: 'Tabs', enlace:'/main/tabs', icono:'folder-outline'},
           {nombre: 'Turismo-api', enlace:'main/destinos-api', icono:'airplane'},
+          {nombre: 'botones-segmentados', enlace:'/main/botones-segmentados', icono:'bookmarks-outline'},
         ];
       }
       else{

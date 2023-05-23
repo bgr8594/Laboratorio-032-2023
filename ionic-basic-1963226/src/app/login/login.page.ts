@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User} from '../user';
 import { ModalErrorComponent } from '../modal-error/modal-error.component';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
 import { AutService } from '../aut.service';
 import{Router} from '@angular/router';
 import { MenuServiceService } from '../menu-service.service';
@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
     private modalCtrl: ModalController,
     private autSvc: AutService,
     private menuService: MenuServiceService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loadingContoller: LoadingController
   ) { }
 
   ngOnInit() {
@@ -33,9 +34,11 @@ export class LoginPage implements OnInit {
     this.autSvc.onLogin(this.user).then((user:any)=>{
       if(user!=null && user.code ==undefined){
         console.log('Successfully logged in!');
+        this.loadingContoller.dismiss();
         this.router.navigate(['/main/presupuesto']);
       }
       else{
+        this.loadingContoller.dismiss();
         if(user.code){
           if(user.code=='auth/wrong-password' || user.code =='auth/invalid-email' || user.code=='auth/argument-error'){
             this.openModal(user);
@@ -79,6 +82,7 @@ export class LoginPage implements OnInit {
     if(this.ionicForm.valid){
       this.user.email = this.ionicForm.get('email').value;
       this.user.password = this.ionicForm.get('password').value;
+      this.presentLoadingWithOptions();
       this.onLogin();
     }
   }
@@ -90,7 +94,19 @@ export class LoginPage implements OnInit {
     return null;
   } 
 
+  
   ionViewWillEnter(){
     this.ionicForm.reset();
   }
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingContoller.create({
+      message: 'Iniciando sesion...',
+      translucent: true,
+      backdropDismiss: true
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed with role:', role);
+  }  
 }

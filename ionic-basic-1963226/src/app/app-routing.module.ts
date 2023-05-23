@@ -63,6 +63,10 @@ const routes: Routes = [
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
+  {
+    path: 'botones-segmentados',
+    loadChildren: () => import('./botones-segmentados/botones-segmentados.module').then( m => m.BotonesSegmentadosPageModule)
+  },
   
 ];
 
