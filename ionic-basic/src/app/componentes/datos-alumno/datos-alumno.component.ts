@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Alumno } from 'src/app/alumno';
+import { Calificacion } from 'src/app/calificacion';
 
 @Component({
   selector: 'app-datos-alumno',
@@ -9,8 +9,8 @@ import { Alumno } from 'src/app/alumno';
 })
 export class DatosAlumnoComponent implements OnInit {
   
-  @Input() alumnosList:Alumno[] =[];
-  @Output() eliminar: any = new EventEmitter<Alumno[]>();
+  @Input() calificacionList:Calificacion[] =[];
+  @Output() eliminar: any = new EventEmitter<Calificacion[]>();
   @Output() editar:  any = new EventEmitter<number>();
 
   constructor() { }
