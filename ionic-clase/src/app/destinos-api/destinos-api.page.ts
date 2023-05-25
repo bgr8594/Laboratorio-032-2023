@@ -13,8 +13,8 @@ export class DestinosApiPage implements OnInit {
   lugar: Lugar = new Lugar();
   destinos: any[] = [];
   ionicForm: any;
-  estado: string = "Alta destino";
-  editando: boolean = false;
+  estado: string ="Alta destino";
+  editando: boolean= false;
   latitud: any;
   longitud: any;
 
@@ -28,62 +28,62 @@ export class DestinosApiPage implements OnInit {
     this.getPosition();
   }
 
-  getLugares() {
-    this.lugarService.getLugaresApi().subscribe((response: Lugar[]) => {
+  getLugares(){
+    this.lugarService.getLugaresApi().subscribe((response: Lugar[])=>{
       this.destinos = response;
-    }, error => {
+    }, error=>{
       console.error(error);
     });
   }
 
-  submitForm() {
+  submitForm(){
 
     //this.lugar = (this.lugar == undefined ? new Lugar() : this.lugar); 
 
-    if (this.ionicForm.valid) {
+    if(this.ionicForm.valid){
       this.lugar.nombre = this.ionicForm.get('nombre').value;
       this.lugar.latitud = this.latitud;
       this.lugar.longitud = this.longitud;
-      if (!this.editando) {
-        this.lugarService.altaLugarApi(this.lugar).subscribe((response: any) => {
-          if (response) {
+      if(!this.editando){
+        this.lugarService.altaLugarApi(this.lugar).subscribe((response: any)=>{
+          if(response){
             this.ionicForm.reset();
             this.getLugares();
-          } else {
+          } else{
             this.errorProceso();
           }
-        }, error => {
+        }, error=>{
           console.error(error);
-        })
-      } else {
-        this.lugarService.editarLugarApi(this.lugar.id, this.lugar).subscribe((resposne: any) => {
-          if (resposne) {
-            this.editando = false;
+        })      
+      } else{
+        this.lugarService.editarLugarApi(this.lugar.id, this.lugar).subscribe((resposne: any)=>{
+          if(resposne){
+            this.editando= false;
             this.estado = "Alta destino";
             this.lugar = new Lugar();
             this.ionicForm.reset();
             this.getLugares();
-          } else {
+          } else{
             this.errorProceso();
           }
-        }, error => {
+        }, error=>{
           console.error(error);
         });
       }
     }
   }
 
-  buildForm() {
+  buildForm(){
     this.ionicForm = this.formBuilder.group({
-      nombre: new FormControl('', { validators: [Validators.required] })
+      nombre: new FormControl('',{validators: [Validators.required]})
     });
   }
 
   hasError: any = (controlName: string, errorName: string) => {
-    return !this.ionicForm.controls[controlName].valid &&
-      this.ionicForm.controls[controlName].hasError(errorName) &&
-      this.ionicForm.controls[controlName].touched;
-  }
+		return !this.ionicForm.controls[controlName].valid &&
+			this.ionicForm.controls[controlName].hasError(errorName) &&
+			this.ionicForm.controls[controlName].touched;
+	}
 
 
   editarLugar(id: any, lugar: any) {
@@ -94,27 +94,27 @@ export class DestinosApiPage implements OnInit {
   }
 
   eliminarLugar(id: any) {
-    this.lugarService.borrarLugarApi(id).subscribe((response: any) => {
-      if (response) {
+    this.lugarService.borrarLugarApi(id).subscribe((response:any)=>{
+      if(response){
         this.getLugares();
         this.estado = "Alta destino";
         this.editando = false;
         this.ionicForm.reset();
-      } else {
+      } else{
         this.errorProceso();
       }
-    }, error => {
+    }, error=>{
       console.error(error);
     })
   }
 
-  // cada que se vuelve a entrar a la pagina ó componente de pagina
+ // cada que se vuelve a entrar a la pagina ó componente de pagina
   //https://ionicframework.com/docs/angular/lifecycle
-  ionViewWillEnter() {
+  ionViewWillEnter(){
     this.getLugares();
   }
 
-  cancelarEdicion() {
+  cancelarEdicion(){
     this.estado = "Alta destino";
     this.editando = false;
     this.ionicForm.reset();
@@ -122,22 +122,22 @@ export class DestinosApiPage implements OnInit {
   }
 
   getPosition(): Promise<any> {
-    return new Promise((resolve: any, reject: any): any => {
-      navigator.geolocation.getCurrentPosition((resp: any) => {
-        this.latitud = resp.coords.latitude;
-        this.longitud = resp.coords.longitude;
-      },
-        (err: any) => {
-          if (err.code === 1) {
-            alert('Favor de activar la geolocalización en tu navegador y recargar la pantalla.');
-          }
-          this.latitud = null;
-          this.longitud = null;
-        }, { timeout: 5000, enableHighAccuracy: true });
-    });
-  }
+		return new Promise((resolve: any, reject: any): any => {
+			navigator.geolocation.getCurrentPosition((resp: any) => {
+				this.latitud = resp.coords.latitude;
+				this.longitud = resp.coords.longitude;
+			},
+			(err: any) => {
+				if ( err.code === 1 ) {
+					alert('Favor de activar la geolocalización en tu navegador y recargar la pantalla.');
+				}
+				this.latitud = null;
+				this.longitud = null;
+			}, {timeout: 5000, enableHighAccuracy: true });
+		});
+	}  
 
-  errorProceso() {
+  errorProceso(){
     alert("Ocurrio un error en el proceso");
   }
 }

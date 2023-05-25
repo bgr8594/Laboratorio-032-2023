@@ -10,14 +10,14 @@ import { EnvioReceptorService } from '../service/envio-receptor.service';
 })
 export class InicioPage implements OnInit {
 
-  user: Personaje = { name: 'Pedro Perez', uuid: "34523452345234523452345", email: "correo@gmail.com" };
+  user: Personaje = {name:'Pedro Perez', uuid:"34523452345234523452345", email:"correo@gmail.com"};
 
-  list: Personaje[] =
-    [
-      { name: 'Pedro Perez', uuid: "34523452345234523452345", email: "correo@gmail.com" },
-      { name: 'Pedro Perez', uuid: "34523452345234523452345", email: "correo@gmail.com" },
-      { name: 'Pedro Perez', uuid: "34523452345234523452345", email: "correo@gmail.com" }
-    ];
+  list: Personaje[]=
+  [
+    {name:'Pedro Perez', uuid:"34523452345234523452345", email:"correo@gmail.com"},
+    {name:'Pedro Perez', uuid:"34523452345234523452345", email:"correo@gmail.com"},
+    {name:'Pedro Perez', uuid:"34523452345234523452345", email:"correo@gmail.com"}
+  ];
 
   constructor(
     private router: Router,
@@ -27,7 +27,7 @@ export class InicioPage implements OnInit {
   ngOnInit() {
   }
 
-  redireccionReceptor() {
+  redireccionReceptor(){
     this.envioReceptor.sendObjectSource(this.user);
     this.envioReceptor.sendListSource(this.list);
 

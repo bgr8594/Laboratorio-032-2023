@@ -15,19 +15,19 @@ export class ApiService {
   ) { }
 
   // metodos de crud api
-  getLugaresApi(): Observable<Lugar[]> {
-    return this.http.get<any>(`${this.basePath}/list`, {});
+  getLugaresApi() :Observable<Lugar[]>{
+    return this.http.get<any>(`${this.basePath}/list`,{});
   }
 
-  altaLugarApi(lugar: Lugar): Observable<any> {
+  altaLugarApi(lugar: Lugar): Observable<any>{
     return this.http.post(`${this.basePath}/add`, lugar);
   }
 
-  borrarLugarApi(id: string): Observable<any> {
+  borrarLugarApi(id: string): Observable<any>{
     return this.http.delete(`${this.basePath}/${id}/delete`, {});
   }
 
-  editarLugarApi(id: any, lugar: Lugar): Observable<any> {
-    return this.http.put(`${this.basePath}/${id}/update`, lugar, {});
+  editarLugarApi(id: any, lugar: Lugar): Observable<any>{
+    return this.http.put(`${this.basePath}/${id}/update`,lugar,{});
   }
 }

@@ -10,18 +10,18 @@ import { Router } from '@angular/router';
 })
 export class RecetaPage implements OnInit {
 
-  recetas: Receta[] = [];
+  recetas: Receta[] = [] ;
 
   constructor(
     private recetaService: RecetaService,
     private router: Router
-  ) { }
+    ) { }
 
   ngOnInit() {
     this.recetas = this.recetaService.getRecetas();
   }
 
-  irDetalleReceta(id: number) {
+  irDetalleReceta(id: number){
     this.router.navigate([`main/detalle-receta/${id}`]);
   }
 

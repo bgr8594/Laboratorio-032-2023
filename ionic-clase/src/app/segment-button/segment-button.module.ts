@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AlumnoPageRoutingModule } from './alumno-routing.module';
+import { SegmentButtonPageRoutingModule } from './segment-button-routing.module';
 
-import { AlumnoPage } from './alumno.page';
+import { SegmentButtonPage } from './segment-button.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AlumnoPageRoutingModule
+    SegmentButtonPageRoutingModule
   ],
-  declarations: [AlumnoPage]
+  declarations: [SegmentButtonPage]
 })
-export class AlumnoPageModule {}
+export class SegmentButtonPageModule {}

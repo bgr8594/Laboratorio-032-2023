@@ -18,4 +18,4 @@ import { DestinosApiPage } from './destinos-api.page';
   ],
   declarations: [DestinosApiPage]
 })
-export class DestinosApiPageModule { }
+export class DestinosApiPageModule {}
