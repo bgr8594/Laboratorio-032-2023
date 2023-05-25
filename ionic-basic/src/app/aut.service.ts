@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { initializeApp } from "firebase/app"
+import { Capacitor } from '@capacitor/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, indexedDBLocalPersistence, initializeAuth } from "firebase/auth";
 import { User } from './user';
 import { getFirestore, collection, addDoc, getDocs, doc, setDoc, deleteDoc} from 'firebase/firestore';
 import { Lugar } from './lugar';
-import { getDatabase } from "firebase/database";
 
-const firebaseApp = initializeApp(environment.firebaseConfig);
+//const firebaseApp = initializeApp(environment.firebaseConfig);
 
-const dbCloudFirestore = getFirestore(firebaseApp);
+//const dbCloudFirestore = getFirestore(firebaseApp); no es ejecutado en ios
+// y nunca se conecta a firebase
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,18 @@ export class AutService {
 
   public isLoged : any = false;
   auth: Auth;
-  db = dbCloudFirestore;
+  db : any;
 
   constructor() { 
+    const firebaseApp = initializeApp(environment.firebaseConfig);
+    if (Capacitor.isNativePlatform()) {
+      initializeAuth(firebaseApp, {
+        persistence: indexedDBLocalPersistence
+      });
+
+      this.db = getFirestore(firebaseApp);
+
+    }    
     this.auth = getAuth(firebaseApp);
     onAuthStateChanged(this.auth, user => {
       if(user!= undefined || user != null){
@@ -66,6 +76,8 @@ export class AutService {
           lugar.id = doc.id;
           lugar.latitud = data.latitud;
           lugar.longitud = data.longitud;
+          console.log(doc.id);
+          destinos.push(lugar);
       });
     })
     .catch(error=>{
