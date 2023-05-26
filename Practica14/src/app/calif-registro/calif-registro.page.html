@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>CalifRegistro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nombre de la Materia</ion-label>
+      <ion-input type="text" [(ngModel)]="nombreMateria" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Calificación</ion-label>
+      <ion-input type="number" [(ngModel)]="calificacion" min="0" max="100" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Aprobado</ion-label>
+      <ion-toggle [(ngModel)]="aprobado"></ion-toggle>
+    </ion-item>
+
+    <ion-button expand="full" (click)="guardar()">Guardar</ion-button>
+  </ion-list>
+  
+
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>Registros</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label>Nombre Materia</ion-label>
+      <ion-label>Calificación</ion-label>
+      <ion-label>Aprobación</ion-label>
+    </ion-item>
+    <ion-item-sliding *ngFor="let registro-calif of registros; let i = index">
+      <ion-item>
+        <ion-label>{{ nombreMateria }}</ion-label>
+        <ion-label>{{ calificacion }}</ion-label>
+        <ion-label>{{ aprobado ? 'Aprobado' : 'Reprobado' }}</ion-label>
+      </ion-item>
+        <ion-button color="primary" (click)="editar(i)">Editar</ion-button>
+        <ion-button color="danger" (click)="eliminar(i)">Eliminar</ion-button>
+    </ion-item-sliding>
+  </ion-list>
+
+
+</ion-content>
