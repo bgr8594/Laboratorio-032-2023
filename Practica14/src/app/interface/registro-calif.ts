@@ -1,5 +1,5 @@
 export interface RegistroCalif {
-    nombreMateria: string;
+    materia: string;
     calificacion: number;
-    aprobado: boolean;
+    id?:number;
 }

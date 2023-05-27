@@ -8,36 +8,30 @@ export class RegistroCalifService {
   private registros: RegistroCalif[]=[];
   
 
-  constructor() { 
-
-    this.registros=[
-      {
-        nombreMateria:'Materia 1',
-        calificacion: 90,
-        aprobado: true
-      },
-      {
-        nombreMateria:'Materia 2',
-        calificacion: 60,
-        aprobado: false
-      }
-    ];
-
+  constructor() { }
+  public agregarCalif(calificacion: RegistroCalif){
+    if(this.registros.length>0){
+      calificacion.id=this.registros.length+1;
+    }else{
+      calificacion.id=1;
+    }
+    this.registros.push(calificacion);
   }
-
-  obtenerRegistros(): RegistroCalif[]{
+  public eliminarCalif(id:number){
+    this.registros=this.registros.filter((cal=>cal.id!=id));
+  }
+  public getCalif():RegistroCalif[]{
     return this.registros;
   }
-
-  agregarRegistro(registrto: RegistroCalif){
-    this.registros.push(registrto);
+  public setCalif(calificacion: RegistroCalif[]){
+    this.registros=calificacion;
+  }
+  public actualiza(calificacion: RegistroCalif){
+    this.registros.filter(
+      (cal)=>cal.id==calificacion.id).map(cal=>{cal.materia=calificacion.materia; cal.calificacion=calificacion.calificacion;});
+      return this.registros;
   }
 
-  editarRegistro(index: number, registro: RegistroCalif){
-    this.registros[index]=registro;
-  }
 
-  eliminarRegistro(index: number){
-    this.registros.splice(index,1);
-  }
+
 }

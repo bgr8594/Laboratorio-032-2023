@@ -1,49 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>CalifRegistro</ion-title>
+      <ion-title>Calificaciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Nombre de la Materia</ion-label>
-      <ion-input type="text" [(ngModel)]="nombreMateria" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Calificación</ion-label>
-      <ion-input type="number" [(ngModel)]="calificacion" min="0" max="100" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Aprobado</ion-label>
-      <ion-toggle [(ngModel)]="aprobado"></ion-toggle>
-    </ion-item>
-
-    <ion-button expand="full" (click)="guardar()">Guardar</ion-button>
-  </ion-list>
-  
-
-  <ion-list>
-    <ion-item-divider>
-      <ion-label>Registros</ion-label>
-    </ion-item-divider>
-    <ion-item>
-      <ion-label>Nombre Materia</ion-label>
-      <ion-label>Calificación</ion-label>
-      <ion-label>Aprobación</ion-label>
-    </ion-item>
-    <ion-item-sliding *ngFor="let registro-calif of registros; let i = index">
       <ion-item>
-        <ion-label>{{ nombreMateria }}</ion-label>
-        <ion-label>{{ calificacion }}</ion-label>
-        <ion-label>{{ aprobado ? 'Aprobado' : 'Reprobado' }}</ion-label>
+          <ion-label>
+              Materia:
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="materia" placeholder="Nombre de la materia"></ion-input>
       </ion-item>
-        <ion-button color="primary" (click)="editar(i)">Editar</ion-button>
-        <ion-button color="danger" (click)="eliminar(i)">Eliminar</ion-button>
-    </ion-item-sliding>
+      <ion-item>
+          <ion-label>
+             Calificacion:
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="calificacion" placeholder="Ingrese la calificacion"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-button type="button" (click)="guardar()">{{estado}}</ion-button>
+          <ion-button *ngIf="estado==='actualizar'" type="button" (click)="cancelar()">Cancelar</ion-button>
+          <ion-text *ngIf="error" color="danger">
+              <h6>Debe ingresar el nombre de la materia y la calificacion para {{estado}}</h6>
+          </ion-text>
+  </ion-item>
   </ion-list>
-
-
-</ion-content>
+  </ion-content>

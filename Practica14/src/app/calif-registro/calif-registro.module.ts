@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { CalifRegistroPageRoutingModule } from './calif-registro-routing.module';
 
 import { CalifRegistroPage } from './calif-registro.page';
+import { CalifcompComponent } from '../califcomp/califcomp.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { CalifRegistroPage } from './calif-registro.page';
     IonicModule,
     CalifRegistroPageRoutingModule
   ],
-  declarations: [CalifRegistroPage]
+  declarations: [CalifRegistroPage, CalifRegistroPage],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CalifRegistroPageModule {}
