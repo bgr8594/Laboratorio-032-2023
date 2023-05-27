@@ -1,0 +1,45 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Calificaciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="calificacionForm" (ngSubmit)="modoEdicion ? guardarCambios() : altaCalificacion()">
+    <ion-item>
+      <ion-label>Materia</ion-label>
+      <ion-input formControlName="materia" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Calificación</ion-label>
+      <ion-input formControlName="calificacion" type="number"></ion-input>
+    </ion-item>
+    <div class="ion-padding">
+      <ion-button expand="full" type="submit" [disabled]="!calificacionForm.valid">
+        {{ modoEdicion ? 'Guardar cambios' : 'Alta de calificación' }}
+      </ion-button>
+      <ion-button expand="full" color="danger" *ngIf="modoEdicion" (click)="cancelarEdicion()">Cancelar</ion-button>
+    </div>
+  </form>
+
+  <ion-list *ngIf="calificaciones.length > 0">
+    <ion-item *ngFor="let calificacion of calificaciones">
+      <ion-label>
+        <h2>{{ calificacion.materia }}</h2>
+        <p>Calificación: {{ calificacion.calificacion }}</p>
+        <p>Estado: {{ calificacion.aprobado ? 'Aprobado' : 'Reprobado' }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="editarCalificacion(calificacion)">
+          <ion-icon name="pencil"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="bajaCalificacion(calificacion.id)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>
