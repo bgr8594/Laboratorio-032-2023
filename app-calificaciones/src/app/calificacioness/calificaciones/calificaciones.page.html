@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Calificaciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="calificacionForm" (ngSubmit)="agregarCalificacion()">
+    <ion-item>
+      <ion-label>Materia</ion-label>
+      <ion-input formControlName="materia" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Calificación</ion-label>
+      <ion-input formControlName="calificacion" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Aprobado</ion-label>
+      <ion-checkbox formControlName="aprobado"></ion-checkbox>
+    </ion-item>
+
+    <div class="error-message" *ngIf="calificacionForm.get('materia')?.touched && calificacionForm.get('materia')?.invalid">
+      Materia es requerida.
+    </div>
+    
+    <div class="error-message" *ngIf="calificacionForm.get('calificacion')?.touched && calificacionForm.get('calificacion')?.invalid">
+      Calificación es requerida.
+    </div>
+    
+
+    <ion-button type="submit" [disabled]="calificacionForm.invalid">Agregar</ion-button>
+    <ion-button type="submit" [disabled]="ModificarForm">Modificar</ion-button>
+
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let calificacion of calificaciones; let i = index">
+      <ion-label>{{ calificacion.materia }}</ion-label>
+      <ion-label>{{ calificacion.calificacion }}</ion-label>
+      <ion-label>{{ calificacion.aprobado ? 'Aprobado' : 'Reprobado' }}</ion-label>
+      <ion-button color="primary" (click)="editarCalificacion(i)">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+      <ion-button (click)="eliminarCalificacion(i)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
