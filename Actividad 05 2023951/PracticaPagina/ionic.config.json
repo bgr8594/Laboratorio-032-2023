@@ -1,7 +1,0 @@
-{
-  "name": "PracticaPagina-CMMA",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
