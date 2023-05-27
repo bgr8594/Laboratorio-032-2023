@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Calificaciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <form [formGroup]="calificacionesForm" (ngSubmit)="agregarCalificacion()">
+    <ion-item>
+      <ion-label position="floating">Materia</ion-label>
+      <ion-input formControlName="materia"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Calificación</ion-label>
+      <ion-input type="number" formControlName="calificacion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Aprobado</ion-label>
+      <ion-checkbox formControlName="aprobado"></ion-checkbox>
+    </ion-item>
+    <ion-button type="submit" expand="full" [disabled]="!calificacionesForm.valid">
+      Agregar Calificación
+    </ion-button>
+  </form>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4">Materia</ion-col>
+      <ion-col size="4">Calificación</ion-col>
+      <ion-col size="4">Acciones</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let calificacion of calificaciones">
+      <ion-col size="4">{{ calificacion.materia }}</ion-col>
+      <ion-col size="4">{{ calificacion.calificacion }}</ion-col>
+      <ion-col size="4">
+        <ion-button (click)="borrarCalificacion(calificacion)">Borrar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
