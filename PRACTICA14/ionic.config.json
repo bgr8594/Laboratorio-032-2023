@@ -1,5 +1,7 @@
 {
-  "name": "ionic-app-base",
-  "integrations": {},
+  "name": "PRACTICA14",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
