@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Calificaciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let calificacion of calificaciones; let i = index">
+      <ion-label>
+        <h2>{{ calificacion.materia }}</h2>
+        <p>Calificación: {{ calificacion.calificacion }}</p>
+        <p>Aprobado/Reprobado: {{ calificacion.aprobado ? 'Aprobado' : 'Reprobado' }}</p>
+      </ion-label>
+      <ion-button slot="end" (click)="eliminarCalificacion(i)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="agregarCalificacion()">Agregar Calificación</ion-button>
+</ion-content>
