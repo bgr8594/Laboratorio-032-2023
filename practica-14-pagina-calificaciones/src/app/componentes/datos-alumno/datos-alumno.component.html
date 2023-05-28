@@ -1,0 +1,23 @@
+<ion-grid *ngIf="calificacionList.length > 0">
+    <ion-row>
+      <ion-col>Materia</ion-col>
+      <ion-col>Estado</ion-col>
+      <ion-col>Calificacion</ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row *ngFor="let calificacion of calificacionList">
+      <ion-col>
+        {{calificacion.materia}}
+      </ion-col>
+      <ion-col>
+        {{calificacion.aprobado}}
+      </ion-col>
+      <ion-col>
+        {{calificacion.cal}}
+      </ion-col>
+      <ion-col (click)="editar.emit(calificacion)" class="cursor"><a>Editar</a></ion-col>
+      <ion-col (click)="eliminar.emit(calificacion.id)" class="cursor"><a>X</a></ion-col>
+    </ion-row>
+  </ion-grid>
+  
