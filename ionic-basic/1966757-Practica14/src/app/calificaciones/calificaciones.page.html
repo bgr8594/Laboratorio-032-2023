@@ -18,7 +18,7 @@
       <ion-input formControlName="calificacion" type="number"></ion-input>
     </ion-item>
     <div class="ion-padding">
-      <ion-button expand="full" type="submit" [disabled]="!calificacionForm.valid">
+      <ion-button expand="full" type="submit" color="success" [disabled]="!calificacionForm.valid">
         {{ modoEdicion ? 'Guardar cambios' : 'Alta de calificación' }}
       </ion-button>
       <ion-button expand="full" color="danger" *ngIf="modoEdicion" (click)="cancelarEdicion()">Cancelar</ion-button>
