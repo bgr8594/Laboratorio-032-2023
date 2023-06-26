@@ -9,12 +9,6 @@ export class CalificacionesService {
   private calificaciones: Calificacion[] = [];
 
   constructor() {
-    // Agrega algunas calificaciones pre-cargadas para ejemplo
-    this.calificaciones.push(
-      new Calificacion(1, 'Aplicaciones Moviles', 100, true),
-      new Calificacion(2, 'Español', 62, false),
-      new Calificacion(3, 'Automatas', 49, false)
-    );
   }
 
   buscarCalificaciones(): Calificacion[] {
